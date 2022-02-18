@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello_flutter/demo/handing_gestures.dart';
 import 'package:hello_flutter/demo/shopping_list.dart';
+import 'package:hello_flutter/demo/strawberry.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -26,19 +27,7 @@ class MyAppHome extends StatelessWidget {
         title: const Text("Index"),
         actions: const [IconButton(onPressed: null, icon: Icon(Icons.search))],
       ),
-      body: Center(
-        child: ShoppingListItem(
-          product: const Product(name: "Amber"),
-          inCart: true,
-          onCartChange: (p, b) {
-          },
-        ),
-      ),
-      floatingActionButton: const FloatingActionButton(
-        onPressed: null,
-        tooltip: "Add",
-        child: Icon(Icons.add),
-      ),
+      body: const Strawberry(),
     );
   }
 }
