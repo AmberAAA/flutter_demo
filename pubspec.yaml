@@ -59,6 +59,7 @@ flutter:
 
   assets:
     - images/strawberry.jpg
+    - images/lake.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

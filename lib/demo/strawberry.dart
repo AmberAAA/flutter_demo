@@ -13,11 +13,10 @@ class Strawberry extends StatelessWidget {
   /// 生成评分的ICON [number] 0 -5 分
   Row _genStarts(int number) {
     List<Widget> lint = [];
-    for (int i = 0; i < number; i++) {
-      lint.add(const Icon(Icons.star, color: Colors.black));
-    }
-    for (int i = lint.length; i < 5; i++) {
-      lint.add(const Icon(Icons.star, color: Colors.black45));
+    for (int i = 0; i < 5; i++) {
+      lint.add(i < number
+          ? const Icon(Icons.star, color: Colors.lightGreen)
+          : const Icon(Icons.star_outline, color: Colors.lightGreen));
     }
     return Row(
       children: lint,
@@ -62,7 +61,10 @@ class Strawberry extends StatelessWidget {
 
   Widget _infoItem(IconData icon, String title, String value) {
     return Column(children: [
-      Icon(icon, color: Colors.lightGreen,),
+      Icon(
+        icon,
+        color: Colors.lightGreen,
+      ),
       Text(title),
       Text(value),
     ]);
@@ -78,25 +80,27 @@ class Strawberry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: _leftContainer(),
-            flex: 2,
-          ),
-          Expanded(
-            child: _rightImg(),
-            flex: 1,
-          )
-        ],
-      ),
-      Container(
-        margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-        child: _info(),
-      )
-    ],);
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: _leftContainer(),
+              flex: 2,
+            ),
+            Expanded(
+              child: _rightImg(),
+              flex: 1,
+            )
+          ],
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+          child: _info(),
+        )
+      ],
+    );
   }
 }
