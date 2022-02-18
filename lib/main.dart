@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hello_flutter/demo/handing_gestures.dart';
 import 'package:hello_flutter/demo/shopping_list.dart';
 import 'package:hello_flutter/demo/strawberry.dart';
+import 'package:hello_flutter/demo/todo_list.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -9,7 +10,8 @@ void main() {
     initialRoute: '/',
     routes: {
       '/': (context) => const MyAppHome(),
-      '/second': (context) => const Strawberry()
+      '/strawberry': (context) => const Strawberry(),
+      '/todo': (context) => const TodoListPage(),
     },
   ));
 }
@@ -36,9 +38,16 @@ class MyAppHome extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ElevatedButton(onPressed: () {
-              Navigator.pushNamed(context, "/second");
-            }, child: const Text("布局DEMO")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/strawberry");
+                },
+                child: const Text("布局DEMO")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/todo");
+                },
+                child: const Text("TODO LIST"))
           ],
         ),
       ),
