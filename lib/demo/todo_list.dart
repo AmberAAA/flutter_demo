@@ -64,13 +64,12 @@ class _TodoListState extends State<TodoList> {
 
   List<Todo> todos = genTodoList();
 
-  static final _wordPair = WordPair.random();
 
   static List<Todo> genTodoList () {
     List<Todo> list = [];
     var random = Random();
     for (int i = 0; i < 10; i++) {
-      list.add(Todo(_wordPair.asPascalCase, random.nextBool() , random.nextBool()));
+      list.add(Todo(WordPair.random().asPascalCase, random.nextBool() , random.nextBool()));
     }
     return list;
   }
