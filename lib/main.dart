@@ -4,9 +4,13 @@ import 'package:hello_flutter/demo/shopping_list.dart';
 import 'package:hello_flutter/demo/strawberry.dart';
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     title: "Material App",
-    home: MyAppHome(),
+    initialRoute: '/',
+    routes: {
+      '/': (context) => const MyAppHome(),
+      '/second': (context) => const Strawberry()
+    },
   ));
 }
 
@@ -27,7 +31,17 @@ class MyAppHome extends StatelessWidget {
         title: const Text("Index"),
         actions: const [IconButton(onPressed: null, icon: Icon(Icons.search))],
       ),
-      body: const Strawberry(),
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(onPressed: () {
+              Navigator.pushNamed(context, "/second");
+            }, child: const Text("布局DEMO")),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -80,27 +80,32 @@ class Strawberry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: _leftContainer(),
-              flex: 2,
-            ),
-            Expanded(
-              child: _rightImg(),
-              flex: 1,
-            )
-          ],
-        ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-          child: _info(),
-        )
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("布局DEMO"),
+      ),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: _leftContainer(),
+                flex: 2,
+              ),
+              Expanded(
+                child: _rightImg(),
+                flex: 1,
+              )
+            ],
+          ),
+          Container(
+            margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+            child: _info(),
+          )
+        ],
+      ),
     );
   }
 }
