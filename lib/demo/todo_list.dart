@@ -36,17 +36,35 @@ class TodoItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        Text(todo.name),
-        IconButton(
-            onPressed: () {
-              todo.isStar = !todo.isStar;
-              onChange(todo);
-            },
-            icon: todo.isStar
-                ? const Icon(Icons.star)
-                : const Icon(Icons.star_outline))
+        Row(
+          children: [
+            Checkbox(
+                value: todo.isFinish,
+                onChanged: (v) {
+                  todo.isFinish = v!;
+                  onChange(todo);
+                }),
+            Expanded(child: Text(todo.name)),
+            IconButton(
+                onPressed: () {
+                  todo.isStar = !todo.isStar;
+                  onChange(todo);
+                },
+                icon: todo.isStar
+                    ? Icon(Icons.star,
+                        color: Theme.of(context).colorScheme.secondary)
+                    : const Icon(Icons.star_outline))
+          ],
+        ),
+        Positioned(
+          child: SizedBox(
+            child: ElevatedButton(onPressed: () {}, child: const Text("删除")),
+            width: 100,
+          ),
+          left: -100,
+        ),
       ],
     );
   }
@@ -64,27 +82,27 @@ class _TodoListState extends State<TodoList> {
 
   List<Todo> todos = genTodoList();
 
-
-  static List<Todo> genTodoList () {
+  static List<Todo> genTodoList() {
     List<Todo> list = [];
     var random = Random();
     for (int i = 0; i < 10; i++) {
-      list.add(Todo(WordPair.random().asPascalCase, random.nextBool() , random.nextBool()));
+      list.add(Todo(WordPair.random().asPascalCase, random.nextBool(),
+          random.nextBool()));
     }
     return list;
   }
 
   @override
   Widget build(BuildContext context) {
-
-
     return Column(
       children: List.from(todos.map((element) {
-        return TodoItemView(todo: element, onChange: (todo){
-          setState(() {
-            element = todo;
-          });
-        });
+        return TodoItemView(
+            todo: element,
+            onChange: (todo) {
+              setState(() {
+                element = todo;
+              });
+            });
       })),
     );
   }
